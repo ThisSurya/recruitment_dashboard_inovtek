@@ -1,14 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  Eye,
-  Pencil,
-  Plus,
-  Search,
-  Trash2,
-  Briefcase,
-} from "lucide-react";
+import { Eye, Pencil, Plus, Search, Trash2, Briefcase } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -21,11 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { formatShortDate } from "@/lib/format";
-import {
-  type EmploymentType,
-  type Job,
-  type JobStatus,
-} from "@/lib/mock-data";
+import { type EmploymentType, type Job, type JobStatus } from "@/lib/mock-data";
 import { useAtsStore } from "@/stores/ats-store";
 
 const jobSchema = z.object({
@@ -62,7 +51,7 @@ export default function JobsPage() {
   const [activeId, setActiveId] = React.useState<string | null>(null);
 
   const activeJob =
-    activeId == null ? null : jobs.find((j) => j.id === activeId) ?? null;
+    activeId == null ? null : (jobs.find((j) => j.id === activeId) ?? null);
 
   const filtered = jobs.filter((j) => {
     const q = query.trim().toLowerCase();
@@ -177,7 +166,7 @@ export default function JobsPage() {
           </div>
 
           <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-            <div className="relative w-full sm:w-72">
+            <div className="relative w-full sm:w-72 md:w-32 lg:w-72">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
               <Input
                 value={query}
@@ -220,7 +209,9 @@ export default function JobsPage() {
                       Created {formatShortDate(j.createdAt)}
                     </div>
                   </div>
-                  <Badge variant={statusBadgeVariant(j.status)}>{j.status}</Badge>
+                  <Badge variant={statusBadgeVariant(j.status)}>
+                    {j.status}
+                  </Badge>
                 </div>
 
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-zinc-700">
@@ -244,7 +235,9 @@ export default function JobsPage() {
                     <div className="text-[11px] font-medium text-zinc-500">
                       Employment Type
                     </div>
-                    <div className="mt-0.5 text-zinc-900">{j.employmentType}</div>
+                    <div className="mt-0.5 text-zinc-900">
+                      {j.employmentType}
+                    </div>
                   </div>
                 </div>
 
@@ -285,19 +278,31 @@ export default function JobsPage() {
           </div>
 
           {/* Desktop/tablet: table */}
-          <div className="hidden overflow-x-auto md:block">
-            <table className="min-w-full border-separate border-spacing-0">
+          <div className="hidden md:block w-full overflow-x-auto">
+            <table className="min-w-[700px] w-full border-separate border-spacing-0">
               <thead>
                 <tr className="text-left text-xs font-medium text-zinc-500">
-                  <th className="border-b border-zinc-200 px-3 py-2">Job Title</th>
-                  <th className="border-b border-zinc-200 px-3 py-2">Department</th>
-                  <th className="border-b border-zinc-200 px-3 py-2">Location</th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Job Title
+                  </th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Department
+                  </th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Location
+                  </th>
                   <th className="border-b border-zinc-200 px-3 py-2">
                     Employment Type
                   </th>
-                  <th className="border-b border-zinc-200 px-3 py-2">Status</th>
-                  <th className="border-b border-zinc-200 px-3 py-2">Created Date</th>
-                  <th className="border-b border-zinc-200 px-3 py-2">Actions</th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Statussss
+                  </th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Created Date
+                  </th>
+                  <th className="border-b border-zinc-200 px-3 py-2">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -316,7 +321,9 @@ export default function JobsPage() {
                       {j.employmentType}
                     </td>
                     <td className="border-b border-zinc-100 px-3 py-3">
-                      <Badge variant={statusBadgeVariant(j.status)}>{j.status}</Badge>
+                      <Badge variant={statusBadgeVariant(j.status)}>
+                        {j.status}
+                      </Badge>
                     </td>
                     <td className="border-b border-zinc-100 px-3 py-3">
                       {formatShortDate(j.createdAt)}
@@ -384,10 +391,14 @@ export default function JobsPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <div className="text-xs font-medium text-zinc-500">Job Title</div>
-              <div className="mt-1 text-sm text-zinc-900">{activeJob.title}</div>
+              <div className="mt-1 text-sm text-zinc-900">
+                {activeJob.title}
+              </div>
             </div>
             <div>
-              <div className="text-xs font-medium text-zinc-500">Department</div>
+              <div className="text-xs font-medium text-zinc-500">
+                Department
+              </div>
               <div className="mt-1 text-sm text-zinc-900">
                 {activeJob.department}
               </div>
@@ -399,7 +410,9 @@ export default function JobsPage() {
               </div>
             </div>
             <div>
-              <div className="text-xs font-medium text-zinc-500">Employment Type</div>
+              <div className="text-xs font-medium text-zinc-500">
+                Employment Type
+              </div>
               <div className="mt-1 text-sm text-zinc-900">
                 {activeJob.employmentType}
               </div>
@@ -419,13 +432,17 @@ export default function JobsPage() {
               </div>
             </div>
             <div className="sm:col-span-2">
-              <div className="text-xs font-medium text-zinc-500">Description</div>
+              <div className="text-xs font-medium text-zinc-500">
+                Description
+              </div>
               <div className="mt-1 whitespace-pre-wrap text-sm text-zinc-700">
                 {activeJob.description}
               </div>
             </div>
             <div className="sm:col-span-2">
-              <div className="text-xs font-medium text-zinc-500">Requirements</div>
+              <div className="text-xs font-medium text-zinc-500">
+                Requirements
+              </div>
               <div className="mt-1 whitespace-pre-wrap text-sm text-zinc-700">
                 {activeJob.requirements}
               </div>
@@ -492,11 +509,13 @@ export default function JobsPage() {
                 {...form.register("status")}
                 className="h-10 w-full rounded-lg border border-zinc-200 bg-white px-3 text-sm text-zinc-900 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                {(["Open", "Closed", "Draft"] satisfies JobStatus[]).map((v) => (
-                  <option key={v} value={v}>
-                    {v}
-                  </option>
-                ))}
+                {(["Open", "Closed", "Draft"] satisfies JobStatus[]).map(
+                  (v) => (
+                    <option key={v} value={v}>
+                      {v}
+                    </option>
+                  ),
+                )}
               </select>
             </div>
 

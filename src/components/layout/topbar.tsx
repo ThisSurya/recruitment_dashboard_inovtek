@@ -53,18 +53,7 @@ export function Topbar({
         <Menu className="h-5 w-5" />
       </Button>
 
-      <div className="flex flex-1 items-center">
-        <div className="relative w-full max-w-md">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
-          <input
-            className="h-10 w-full rounded-lg border border-zinc-200 bg-white pl-9 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </div>
-      </div>
-
-      <Button variant="ghost" aria-label="Notifications">
+      <Button variant="ghost" aria-label="Notifications" className="ml-auto">
         <Bell className="h-5 w-5" />
       </Button>
 
