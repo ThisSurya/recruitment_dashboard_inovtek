@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Bell, ChevronDown, Menu, Search, LogOut } from "lucide-react";
+import { Bell, ChevronDown, Menu, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
